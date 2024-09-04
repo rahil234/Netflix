@@ -1,0 +1,16 @@
+.video-container {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+  }
+  
+  .video-container.show {
+    transition: opacity 1.5s ease-out;
+    opacity: 1;
+  }
+  
+  .video-player {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

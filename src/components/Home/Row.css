@@ -1,0 +1,13 @@
+.row-container {
+  /* display: table-cell; */
+  /* padding: 0 53px; */
+  font-size: 1.4vw;
+  line-height: 1.25vw;
+  vertical-align: bottom;
+  font-weight: 500;
+  margin: 3vw 0;
+}
+
+.card-title {
+  margin: 0 4% 0.5em 0;
+}

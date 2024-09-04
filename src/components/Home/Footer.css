@@ -1,0 +1,58 @@
+.footer-div {
+  max-width: 980px; /* Limit the width to 980px */
+  margin: 20px auto 0; /* Auto margins for horizontal centering */
+  padding: 0 4% 0;
+  font-size: 13px;
+  color: rgb(128, 128, 128);
+  box-sizing: content-box;
+  line-height: 15.6px;
+}
+
+.social-links {
+  box-sizing: border-box;
+  display: flex;
+  color: white;
+  margin: 0 0 10px;
+  line-height: 13.6px;
+}
+
+.social-link {
+  margin-right: 15px;
+  width: 36px;
+  height: 27.61px;
+}
+
+.footer-links {
+  /* box-sizing: border-box; */
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto new lines */
+  list-style: none; /* Remove default list styling */
+  margin-bottom: 14px;
+}
+
+.footer-link {
+  flex-basis: 25%;
+  padding-right: 22px;
+  margin-bottom: 16px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* .footer-service {
+} */
+
+.footer-service button {
+  border: 1px solid;
+  padding: 6.5px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: 0.5em;
+}
+
+.footer-copyright{
+  margin-bottom: 15px;
+  font-size: 11px;
+  line-height: 13.2px;
+}
