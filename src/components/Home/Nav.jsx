@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
+import ProfileMenu from "./ProfileMenu";
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,8 +105,14 @@ function Nav() {
             </svg>
           </button>
         </div>
+        {/* //////////////////////////// */}
+
         <div className="nav-element">
-          <div className="account-menu-item">
+          <div
+            className="account-menu-item"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div className="account-dropdown-button">
               <a href="/YourAccount">
                 <img
@@ -114,6 +122,9 @@ function Nav() {
                 />
               </a>
               <span className="arrow-down"></span>
+              {isHovered && (
+                <ProfileMenu />
+              )}
             </div>
           </div>
         </div>

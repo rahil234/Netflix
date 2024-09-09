@@ -1,16 +1,18 @@
+// SignUpComponent.jsx
 import React, { useContext, useState } from "react";
 import Footer from "./Home/Footer";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext"; // Adjust the path as necessary
 
-const Login = () => {
-  const { login, error } = useContext(AuthContext);
+const SignUp = () => {
+  const { signup,error } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
 
-  const handleLogIn = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    login(email, password);
-  };
+     signup(email, password,cpassword);
+    }
 
   return (
     <div className="relative bg-black h-full">
@@ -22,6 +24,7 @@ const Login = () => {
         https://assets.nflxext.com/ffe/siteui/vlv3/04bef84d-51f6-401e-9b8e-4a521cbce3c5/null/IN-en-20240903-TRIFECTA-perspective_0d3aac9c-578f-4e3c-8aa8-bbf4a392269b_large.jpg 1800w"
         alt="backround_image"
       ></img>
+      {/* <div className="min-h-56 w-full"></div> */}
       <div className="absolute w-full top-0 h-full bg-[#00000092]">
         <div className="mx-auto w-[1200px] opacity-100 py-5">
           <svg
@@ -43,9 +46,9 @@ const Login = () => {
 
         <div className="signin max-w-[450px] mx-auto bg-[#000000a5] mb-20">
           <form className="flex flex-col p-12">
-            <h2 className="font-bold text-4xl mb-6">Sign In</h2>
+            <h2 className="font-bold text-4xl mb-6">Sign Up</h2>
             <div className=" flex flex-col items-center gap-5">
-              {error && <p className="text-red-500">{error}</p>}
+            {error && <p className="text-red-500">{error}</p>}
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -59,18 +62,20 @@ const Login = () => {
                 placeholder="Password"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
               />
+              <input
+                type="password"
+                aria-label="CPassword"
+                onChange={(e) => setCPassword(e.target.value)}
+                placeholder="Confirm Password"
+                className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
+              />
               <button
                 type="submit"
                 className="w-full bg-[#e50914] p-2 rounded"
-                onClick={handleLogIn}
+                onClick={handleSignUp}
               >
-                Sign In
+                Sign Up
               </button>
-              <p className="text-lg text-[#a7a7a7] ali">OR</p>
-              <button className="w-full bg-[#b8b7b655] p-2 rounded">
-                Use a sign-in code
-              </button>
-              <p>Forget password?</p>
             </div>
             <div>
               <div className="flex flex-col gap-8 mb-8">
@@ -84,9 +89,9 @@ const Login = () => {
                   <label htmlFor="">Remember me</label>
                 </div>
                 <div>
-                  <span className="text-gray-500 ">New to Netflix? </span>
-                  <a href="/signup" className="hover:underline">
-                    <span>Sign up now.</span>
+                  <span className="text-gray-500 ">Already have an account? </span>
+                  <a href="/login" className="hover:underline">
+                    <span>Sign in now.</span>
                   </a>
                 </div>
                 <div>
@@ -105,4 +110,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
