@@ -1,6 +1,8 @@
 import React from "react";
 import Rows from "./Rows";
 import "./MainView.css";
+import posterImage from "../../assets/images/image.png"
+import posterTitleImage from "../../assets/images/billboard-title-image.png"
 
 function MainView() {
   return (
@@ -9,7 +11,7 @@ function MainView() {
         <div className="image-container absolute -z-40">
           <img
             className="w-screen"
-            src="/src/assets/images/image.png"
+            src={posterImage}
             alt="poster_image"
           />
           <div className="billboard-vintage absolute bottom-0 h-[200px]"></div>
@@ -17,7 +19,7 @@ function MainView() {
         <div className="bottom-container ">
           <div className="billboard ">
             <div className="billboard-movie-title flex justify-end flex-col top-0 w-[36%] left-[4%] py-20">
-              <img src="/src/assets/images/billboard-title-image.png" alt="" />
+              <img src={posterTitleImage} alt="" />
               <div className="supplemental-message">
                 Watch in Hindi, Tamil, Telugu, Malayalam, Kannada
               </div>
