@@ -9,22 +9,22 @@ function MainView() {
         <div className="image-container absolute -z-40">
           <img
             className="w-screen"
-            src="src/assets/images/image.png"
+            src="/src/assets/images/image.png"
             alt="poster_image"
           />
-          <div className="billboard-vintage absolute bottom-0"></div>
+          <div className="billboard-vintage absolute bottom-0 h-[200px]"></div>
         </div>
         <div className="bottom-container ">
           <div className="billboard ">
-            <div className="billboard-movie-title flex justify-end flex-col top-0 w-[36%] left-[4%] pt-64">
-              <img src="src/assets/images/billboard-title-image.png" alt="" />
+            <div className="billboard-movie-title flex justify-end flex-col top-0 w-[36%] left-[4%] py-20">
+              <img src="/src/assets/images/billboard-title-image.png" alt="" />
               <div className="supplemental-message">
                 Watch in Hindi, Tamil, Telugu, Malayalam, Kannada
               </div>
               <div className="short-description">
                 This action-packed thriller from director Ali Abbas Zafar
                 (“Tiger Zinda Hai”) follows two soldiers assigned to take down a
-                mysterious villain.{" "}
+                mysterious villain.
               </div>
               <div className="billboard-buttons flex gap-2">
                 <button className="billboard-btn bg-white text-black flex gap-3">
@@ -49,7 +49,7 @@ function MainView() {
                   </div>
                   <span>Play</span>
                 </button>
-                <button className="billboard-btn bg-[#45454581] flex gap-3">
+                <button className="billboard-btn bg-[#454545ba] flex gap-3">
                   <div className="medium ltr-iyulz3" role="presentation">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

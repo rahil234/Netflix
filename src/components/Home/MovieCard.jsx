@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { VideoContext } from "../../context/VideoContext.jsx";
 
 function MovieCard({ id, imagePath, title }) {
-  const { setVideoUrl, setLoading } = useContext(VideoContext);
+  const { setVideoUrl } = useContext(VideoContext);
 
   function showMovie() {
     console.log("Fetching video details for movie ID:", id);
@@ -44,15 +44,13 @@ function MovieCard({ id, imagePath, title }) {
   }
 
   return (
-    <>
-      <div className="w-[16.6666%]" onClick={showMovie}>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${imagePath}`}
-          alt={title}
-          className="object-cover rounded-[0.2vw] hover:scale-150 transition-all"
-        />
-      </div>
-    </>
+    <div className="w-[16.6666%]" onClick={showMovie}>
+      <img
+        src={`https://image.tmdb.org/t/p/w500/${imagePath}`}
+        alt={title}
+        className="object-cover rounded-[0.2vw] hover:scale-150 transition-all"
+      />
+    </div>
   );
 }
 

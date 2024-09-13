@@ -1,15 +1,25 @@
-import React, { useContext, useState } from "react";
-import Footer from "./Home/Footer";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const { login, error } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { login, error, setError } = useContext(AuthContext);
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-    login(email, password);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    if (email === "" && password === "") {
+      setError("Email and password are required");
+    } else if (email === "") {
+      setError("Email are required");
+    } else if (password === "") {
+      setError("Password are required");
+    } else {
+      login(email, password);
+      setError("");
+    }
   };
 
   return (
@@ -42,28 +52,26 @@ const Login = () => {
         </div>
 
         <div className="signin max-w-[450px] mx-auto bg-[#000000a5] mb-20">
-          <form className="flex flex-col p-12">
+          <form className="flex flex-col p-12" onSubmit={handleLogIn}>
             <h2 className="font-bold text-4xl mb-6">Sign In</h2>
             <div className=" flex flex-col items-center gap-5">
               {error && <p className="text-red-500">{error}</p>}
               <input
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                ref={emailRef}
+                autoComplete="email"
                 placeholder="Email or mobile number"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
               />
               <input
                 type="password"
+                ref={passwordRef}
+                autoComplete="current-password"
                 aria-label="Password"
-                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
               />
-              <button
-                type="submit"
-                className="w-full bg-[#e50914] p-2 rounded"
-                onClick={handleLogIn}
-              >
+              <button type="submit" className="w-full bg-[#e50914] p-2 rounded">
                 Sign In
               </button>
               <p className="text-lg text-[#a7a7a7] ali">OR</p>
@@ -75,12 +83,7 @@ const Login = () => {
             <div>
               <div className="flex flex-col gap-8 mb-8">
                 <div className="flex items-center mt-5">
-                  <input
-                    className="size-5 me-3 "
-                    type="checkbox"
-                    name=""
-                    id=""
-                  />
+                  <input className="size-5 me-3" type="checkbox" />
                   <label htmlFor="">Remember me</label>
                 </div>
                 <div>

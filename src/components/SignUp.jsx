@@ -1,18 +1,35 @@
-// SignUpComponent.jsx
-import React, { useContext, useState } from "react";
-import Footer from "./Home/Footer";
-import { AuthContext } from "../context/AuthContext"; // Adjust the path as necessary
+import React, { useContext, useRef } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const SignUp = () => {
-  const { signup,error } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cpassword, setCPassword] = useState("");
+  const { signup, error, setError } = useContext(AuthContext);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-     signup(email, password,cpassword);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+
+    if (email === "" && password === "") {
+      setError("Email and passwords are required");
+    } else if (email === "") {
+      setError("Email are required");
+    } else if (password === "") {
+      setError("Password are required");
+    } else {
+      if (password.length < 8) {
+        setError("Password should be minimum of 8 characters");
+      } else if(password !== confirmPassword){
+        setError("Both passwords should match.")
+      }else{
+        signup(email, password);
+        setError("");
+      }
     }
+  };
 
   return (
     <div className="relative bg-black h-full">
@@ -24,7 +41,7 @@ const SignUp = () => {
         https://assets.nflxext.com/ffe/siteui/vlv3/04bef84d-51f6-401e-9b8e-4a521cbce3c5/null/IN-en-20240903-TRIFECTA-perspective_0d3aac9c-578f-4e3c-8aa8-bbf4a392269b_large.jpg 1800w"
         alt="backround_image"
       ></img>
-      {/* <div className="min-h-56 w-full"></div> */}
+
       <div className="absolute w-full top-0 h-full bg-[#00000092]">
         <div className="mx-auto w-[1200px] opacity-100 py-5">
           <svg
@@ -45,35 +62,34 @@ const SignUp = () => {
         </div>
 
         <div className="signin max-w-[450px] mx-auto bg-[#000000a5] mb-20">
-          <form className="flex flex-col p-12">
+          <form className="flex flex-col p-12" onSubmit={handleSignUp}>
             <h2 className="font-bold text-4xl mb-6">Sign Up</h2>
             <div className=" flex flex-col items-center gap-5">
-            {error && <p className="text-red-500">{error}</p>}
+              {error && <p className="text-red-500">{error}</p>}
               <input
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                ref={emailRef}
+                autoComplete="email"
                 placeholder="Email or mobile number"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
-              />
+                />
               <input
                 type="password"
                 aria-label="Password"
-                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
+                ref={passwordRef}
                 placeholder="Password"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
               />
               <input
                 type="password"
+                autoComplete="new-password"
                 aria-label="CPassword"
-                onChange={(e) => setCPassword(e.target.value)}
+                ref={confirmPasswordRef}
                 placeholder="Confirm Password"
                 className="w-full p-4 bg-[#000000c5] border rounded border-gray-500"
               />
-              <button
-                type="submit"
-                className="w-full bg-[#e50914] p-2 rounded"
-                onClick={handleSignUp}
-              >
+              <button type="submit" className="w-full bg-[#e50914] p-2 rounded">
                 Sign Up
               </button>
             </div>
@@ -89,7 +105,9 @@ const SignUp = () => {
                   <label htmlFor="">Remember me</label>
                 </div>
                 <div>
-                  <span className="text-gray-500 ">Already have an account? </span>
+                  <span className="text-gray-500 ">
+                    Already have an account?{" "}
+                  </span>
                   <a href="/login" className="hover:underline">
                     <span>Sign in now.</span>
                   </a>

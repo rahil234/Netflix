@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import "./Row.css";
-import MovieCard from './MovieCard';
+
+const MovieCard = React.lazy(()=>import("./MovieCard"));
 
 function Row({ title, contentApiUrl }) {
   const [shows, setShows] = useState([]);
@@ -21,7 +22,6 @@ function Row({ title, contentApiUrl }) {
       .then((response) => {
         setShows(response.results);
         setloaded(true);
-        // console.log(response.results);
       })
       .catch((err) => console.error(err));
   }, [contentApiUrl]);
@@ -36,14 +36,22 @@ function Row({ title, contentApiUrl }) {
             </h2>
           </div>
           <div className="card-viewport w-100">
-            <div className="card-set flex gap-1">
+            <div className="card-set flex gap-1 min-h-[140px]">
               {shows.slice(0, 6).map((show) => (
-                <MovieCard
+                <Suspense
                   key={show.id}
-                  id={show.id}
-                  title={show.title}
-                  imagePath={show.backdrop_path}
-                />
+                  fallback={
+                    <div className="w-[16.6666%] bg-gradient-to-t from-[#050505] to-[#202020] rounded">
+                      <div className="flex justify-center items-center"></div>
+                    </div>
+                  }
+                >
+                  <MovieCard
+                    id={show.id}
+                    title={show.title}
+                    imagePath={show.backdrop_path}
+                  />
+                </Suspense>
               ))}
             </div>
           </div>
