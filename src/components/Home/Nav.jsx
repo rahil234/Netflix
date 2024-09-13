@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Nav.css";
 import ProfileMenu from "./ProfileMenu";
+import profileImage from "../../assets/images/profile-image.png"
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -117,7 +118,7 @@ function Nav() {
               <a href="/YourAccount">
                 <img
                   className="rounded"
-                  src="/src/assets/images/profile-image.png"
+                  src={profileImage}
                   alt=""
                 />
               </a>
